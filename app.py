@@ -14,14 +14,24 @@ def total_stock_value(items):
 
 def main():
     items = get_items()
-    print("Inventory")
+    print("=== Shop Inventory Report ===\n")
+    print(f"{'Item':<22}{'Qty':>5}{'Unit price':>14}{'Value':>16}")
+    print("-" * 57)
     for item in items:
-        print(item.item_name, item.quantity, item.price)
-    print("Total stock value:", total_stock_value(items))
-    print("Highest stock:", highest_stock_item(items).item_name)
-    print("Lowest stock:", lowest_stock_item(items).item_name)
-    print("Average price:", sum(i.price for i in items) / len(items))
-    print("Low stock (below 15):", [i.item_name for i in low_stock_items(items)])
+        value = item.quantity * item.price
+        print(f"{item.item_name:<22}{item.quantity:>5}{'NGN ' + format(item.price, ',.2f'):>14}"
+              f"{'NGN ' + format(value, ',.2f'):>16}")
+    print("-" * 57)
+    print(f"Total stock value : NGN {total_stock_value(items):,.2f}")
+    print(f"Highest stock     : {highest_stock_item(items).item_name}")
+    print(f"Lowest stock      : {lowest_stock_item(items).item_name}")
+    print(f"Average unit price: NGN {sum(i.price for i in items) / len(items):,.2f}")
+    low = low_stock_items(items)
+    if low:
+        print("\nLOW STOCK ALERT (below 15 units):")
+        for i in low:
+            status = "OUT OF STOCK" if i.quantity == 0 else f"{i.quantity} left"
+            print(f"  - {i.item_name}: {status}")
 
 
 if __name__ == "__main__":
