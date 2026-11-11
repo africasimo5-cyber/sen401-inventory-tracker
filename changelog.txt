@@ -1,0 +1,9 @@
+c6b7ce4 | africasimo5-cyber | 2026-11-11 08:42 | Merge branch 'dev' into main: maintenance tasks complete
+4cd3f38 | africasimo5-cyber | 2026-11-11 08:42 | Preventive: refactor into small documented functions, add Item.value property, money() helper, constants and type hints
+faaa99a | africasimo5-cyber | 2026-11-11 08:41 | Perfective: show inventory as a formatted table with item values in Naira, highlight out-of-stock items
+a5f1c08 | africasimo5-cyber | 2026-11-11 08:41 | Adaptive: use dataclass Item with Python 3.12-compatible type hints, add low stock alert feature, add __main__ guard
+fb45244 | africasimo5-cyber | 2026-11-11 08:41 | Corrective: fix total stock value (quantity * price, not +) and lowest_stock_item comparison
+d8acaa6 | africasimo5-cyber | 2026-11-11 08:40 | Add app.py to calculate and print total stock value
+313ca4b | africasimo5-cyber | 2026-11-11 08:40 | Add helper functions for highest and lowest stock item
+c37779d | africasimo5-cyber | 2026-11-11 08:40 | Add inventory.py with list of shop items
+4702ec2 | africasimo5-cyber | 2026-11-11 08:40 | Initial commit: add README and requirements
