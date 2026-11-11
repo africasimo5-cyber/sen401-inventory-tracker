@@ -1,0 +1,39 @@
+# Inventory Tracker v2.0
+#   migrate : one-off job that loads data/inventory.json into the SQLite database
+#   api     : FastAPI server, reads and writes the same database (shared volume)
+#   client  : test client that calls the API over the Docker network (http://api:8000)
+#
+# Run:   docker compose up --build
+# Docs:  http://localhost:8000/docs
+
+services:
+  migrate:
+    build: .
+    command: ["python", "migrate.py"]
+    volumes:
+      - inventory-data:/data
+
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - inventory-data:/data
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/')"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  client:
+    build: .
+    command: ["python", "client.py", "http://api:8000"]
+    depends_on:
+      api:
+        condition: service_healthy
+
+volumes:
+  inventory-data:
