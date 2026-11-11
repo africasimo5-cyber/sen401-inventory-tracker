@@ -2,16 +2,8 @@
 
 
 def highest_stock_item(items):
-    best = items[0]
-    for item in items:
-        if item["quantity"] > best["quantity"]:
-            best = item
-    return best
+    return max(items, key=lambda i: i.quantity, default=None)
 
 
 def lowest_stock_item(items):
-    worst = items[0]
-    for item in items:
-        if item["quantity"] < worst["quantity"]:
-            worst = item
-    return worst
+    return min(items, key=lambda i: i.quantity, default=None)
