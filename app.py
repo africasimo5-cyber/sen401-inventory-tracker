@@ -8,7 +8,7 @@ from utils.helpers import highest_stock_item, lowest_stock_item
 def total_stock_value(items):
     total = 0
     for item in items:
-        total = total + item["quantity"] + item["price"]
+        total = total + item["quantity"] * item["price"]
     return total
 
 

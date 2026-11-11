@@ -12,6 +12,6 @@ def highest_stock_item(items):
 def lowest_stock_item(items):
     worst = items[0]
     for item in items:
-        if item["quantity"] > worst["quantity"]:
+        if item["quantity"] < worst["quantity"]:
             worst = item
     return worst
